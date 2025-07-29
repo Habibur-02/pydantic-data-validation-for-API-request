@@ -1,11 +1,11 @@
-from pydantic import BaseModel , EmailStr, AnyUrl
+from pydantic import BaseModel , EmailStr, AnyUrl, Field
 from typing import List, Dict,Optional
 class patients(BaseModel):
-    name: str
+    name: str = Field(max_length=10)
     age: int
     email: EmailStr
     url: AnyUrl
-    weight: float
+    weight: float = Field(gt=0,lt=120)
     married: bool = False
     allergies: Optional[list[str]]=None
     contact: Dict[str,str]
@@ -24,7 +24,7 @@ patient_info={'name':'Aasif',
               'age': '25',
               'email':'abc@gmail.com',
               'url':'https://asif.com',
-              'weight': '33.33',
+              'weight': '12',
               'married': True,
               'allergies':['pollen','dust'],
               'contact':{'email':'abc@gmail.com',
