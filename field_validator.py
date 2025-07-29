@@ -24,6 +24,10 @@ class patients(BaseModel):
         if extract_mail not in valid_mail:
             raise ValueError(404,"Not a corrected mail")
         return value
+    @field_validator('name')
+    @classmethod
+    def name_transform(cls, value):
+        return value.upper()
 
 
 
