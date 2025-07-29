@@ -1,0 +1,50 @@
+from pydantic import BaseModel , EmailStr, AnyUrl, Field, model_validator
+
+from typing import List, Dict,Optional,Annotated
+#Field function custom data banate help kore
+#Annotade metadata banate help kore
+#Field Annotade er moddho o kaj kore, default o banate help kore data k
+
+
+class patients(BaseModel):
+    name: str = Annotated[str,Field(max_length=10,description="Hii",title="write your name",example=["Habibur","Rahman"])]
+    age: int
+    email: EmailStr
+    url: AnyUrl
+    weight: Annotated[float, Field(gt=0,lt=120,strict=True)]
+    married: bool = False
+    allergies: Annotated[Optional[list[str]],Field(default=None,max_items=2)]
+    contact: Dict[str,str]
+
+    @model_validator(mode='after')
+    def age_condition(self):
+        if self.age>65 and 'emergency' not in self.contact:
+            raise ValueError(404,"mara")
+        return self
+
+
+
+def print_patient_info(patient: patients):
+    print(patient.age)
+    print(patient.name)
+    print(patient.married)
+    print(patient.allergies)
+    print(patient.email)
+    print(patient.url)
+
+patient_info={'name':'Aasif',
+              'age': '25',
+              'email':'abc@gmail.com',
+              'url':'https://asif.com',
+              'weight': 18,
+              'married': True,
+              'allergies':['pollen','dust'],
+              'contact':{'email':'abc@gmail.com',
+                         'phone':'+8801748150901'}}
+
+patient=patients(**patient_info)
+
+print_patient_info(patient)
+
+
+
