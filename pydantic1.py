@@ -6,8 +6,8 @@ class patients(BaseModel):
     weight: float
     married: bool
     allergies: list[str]
-    contact: dic[str,str]
-    
+    contact: dict[str,str]
+
 
 
 def print_patient_info(patient: patients):
@@ -16,7 +16,11 @@ def print_patient_info(patient: patients):
 
 patient_info={'name':'Aasif',
               'age': '25',
-              'weight': '33.33'}
+              'weight': '33.33',
+              'married': True,
+              'allergies':['pollen','dust'],
+              'contact':{'email':'abc@gmail.com',
+                         'phone':'+8801748150901'}}
 
 patient=patients(**patient_info)
 
