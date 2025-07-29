@@ -60,7 +60,7 @@ patient_info={'name':'Aasif',
               'contact':{'email':'abc@gmail.com',
                          'phone':'+8801748150901'}}
 
-patient=patients(**patient_info)
+patient=patients(**patient_info) # validation -> type coercion
 
 print_patient_info(patient)
 
