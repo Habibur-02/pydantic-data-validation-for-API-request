@@ -1,15 +1,22 @@
 from pydantic import BaseModel
-
+from typing import List
 class patients(BaseModel):
     name: str
     age: int
+    weight: float
+    married: bool
+    allergies: list[str]
+    contact: dic[str,str]
+    
+
 
 def print_patient_info(patient: patients):
     print(patient.age)
     print(patient.name)
 
 patient_info={'name':'Aasif',
-              'age': 25}
+              'age': '25',
+              'weight': '33.33'}
 
 patient=patients(**patient_info)
 
