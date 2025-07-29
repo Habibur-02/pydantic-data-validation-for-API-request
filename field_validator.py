@@ -28,6 +28,14 @@ class patients(BaseModel):
     @classmethod
     def name_transform(cls, value):
         return value.upper()
+    #eta field function a gt,lt diyeo kora jai.
+    @field_validator('age',mode='before')
+    @classmethod
+    def Age(cls, value):
+        if 0<value<100:
+            return value
+        else:
+            return ValueError(404,"Hoga mara sara")
 
 
 
@@ -43,7 +51,7 @@ def print_patient_info(patient: patients):
     print(patient.url)
 
 patient_info={'name':'Aasif',
-              'age': '25',
+              'age': 25,
               'email':'abc@sonali.com',
               'url':'https://asif.com',
               'weight': 18,
