@@ -1,7 +1,10 @@
 from pydantic import BaseModel , EmailStr, AnyUrl, Field
 from typing import List, Dict,Optional,Annotated
+#Field function custom data banate help kore
+#Annotade metadata banate help kore
+#Field Annotade er moddho o kaj kore
 class patients(BaseModel):
-    name: str = Annotated[str,Field(max_length=10,description="Hii",title="write your name",example="Habibur")]
+    name: str = Annotated[str,Field(max_length=10,description="Hii",title="write your name",example=["Habibur","Rahman"])]
     age: int
     email: EmailStr
     url: AnyUrl
