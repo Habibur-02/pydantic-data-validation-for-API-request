@@ -2,7 +2,9 @@ from pydantic import BaseModel , EmailStr, AnyUrl, Field
 from typing import List, Dict,Optional,Annotated
 #Field function custom data banate help kore
 #Annotade metadata banate help kore
-#Field Annotade er moddho o kaj kore
+#Field Annotade er moddho o kaj kore, default o banate help kore data k
+
+
 class patients(BaseModel):
     name: str = Annotated[str,Field(max_length=10,description="Hii",title="write your name",example=["Habibur","Rahman"])]
     age: int
@@ -10,7 +12,7 @@ class patients(BaseModel):
     url: AnyUrl
     weight: float = Field(gt=0,lt=120)
     married: bool = False
-    allergies: Optional[list[str]]=Field(max_length=2)
+    allergies: Annotated[Optional[list[str]],Field(default=None,max_length=2)]
     contact: Dict[str,str]
 
 
