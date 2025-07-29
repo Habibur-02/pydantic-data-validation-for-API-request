@@ -1,8 +1,10 @@
 from pydantic import BaseModel , EmailStr, AnyUrl, Field
 from typing import List, Dict,Optional,Annotated
+
 #Field function custom data banate help kore
 #Annotade metadata banate help kore
 #Field Annotade er moddho o kaj kore, default o banate help kore data k
+
 
 
 class patients(BaseModel):
@@ -39,6 +41,4 @@ patient=patients(**patient_info)
 
 print_patient_info(patient)
 
-# print(patient.age)
-# print(patient.name)
 
