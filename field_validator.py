@@ -1,4 +1,4 @@
-from pydantic import BaseModel , EmailStr, AnyUrl, Field
+from pydantic import BaseModel , EmailStr, AnyUrl, Field, field_validator
 from typing import List, Dict,Optional,Annotated
 
 #Field function custom data banate help kore
@@ -16,6 +16,17 @@ class patients(BaseModel):
     married: bool = False
     allergies: Annotated[Optional[list[str]],Field(default=None,max_length=2)]
     contact: Dict[str,str]
+    @field_validator('email')
+    @classmethod
+    def email_validator(cls, value):
+        valid_mail=["sonali.com","rupali.com.bd","ruet.ac.bd"]
+        extract_mail=value.split('@')[-1]
+        if extract_mail not in valid_mail:
+            raise ValueError(404,"Not a corrected mail")
+        return value
+
+
+
 
 
 
@@ -29,7 +40,7 @@ def print_patient_info(patient: patients):
 
 patient_info={'name':'Aasif',
               'age': '25',
-              'email':'abc@gmail.com',
+              'email':'abc@sonali.com',
               'url':'https://asif.com',
               'weight': 18,
               'married': True,
