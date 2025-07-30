@@ -15,7 +15,7 @@ class Patient(BaseModel):
 address_dict = {'city': 'gurgaon', 'state': 'haryana', 'pin': '122001'}
 address1 = Address(**address_dict)
 
-# Create patient instance with nested address
+
 patient_dict = {
     'name': 'nitish',
     'gender': 'male', 
